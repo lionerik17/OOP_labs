@@ -45,7 +45,10 @@ public class Carte implements Comparable<Carte>{
 
     public int compareTo(Carte o)
     {
-        return this.getEditura().compareTo(o.getEditura());
+//        return this.getEditura().compareTo(o.getEditura());
+        if(this.getAnAparitie() < o.getAnAparitie()) return -1;
+        else if(this.getAnAparitie() > o.getAnAparitie()) return 1;
+        return 0;
     }
 
     public String toString()
