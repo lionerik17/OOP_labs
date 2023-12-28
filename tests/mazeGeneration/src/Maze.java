@@ -5,6 +5,7 @@ public class Maze {
     private char[][] maze;
     private char[][] borderedMaze;
     private Point[][] parent;
+
     public Maze(int num)
     {
         this.num = num;
@@ -133,13 +134,14 @@ public class Maze {
 
     private void visit(int[][] visited, Stack<Point> stack, Point current, int currentRow, int currentCol)
     {
-        List<Point> neighbors = getNeighbors(current);
+        List<Point> neighbors = getWallNeighbors(current);
         List<Point> unvisitedNeighbors = new ArrayList<>();
 
         for(Point point: neighbors)
         {
             int row = point.getRow();
             int col = point.getCol();
+
             if(visited[row][col] == 0)
             {
                 unvisitedNeighbors.add(point);
@@ -217,7 +219,7 @@ public class Maze {
         return point.getRow() >= 0 && point.getRow() < getNum() && point.getCol() >= 0 && point.getCol() < getNum();
     }
 
-    private List<Point> getNeighbors(Point point)
+    private List<Point> getWallNeighbors(Point point)
     {
         int[][] dir = {{-2, 0}, {0, -2}, {2, 0}, {0, 2}};
         List<Point> neighbors = new ArrayList<>();
